@@ -1,4 +1,4 @@
-from Config import olympics_raw_path
+from Config import olympic_raw_path
 import pandas as pd
 
 def extract_from_csv(file_path):
