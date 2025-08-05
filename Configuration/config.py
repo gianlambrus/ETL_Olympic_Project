@@ -1,5 +1,3 @@
-import os
-
 datalake_base = "D:/Practica_ETL/datalake"
 
 olympic_raw_path = "D:/Practica_ETL/Base/olympics.csv"
