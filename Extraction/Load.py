@@ -2,8 +2,8 @@ from deltalake import write_deltalake, DeltaTable
 from deltalake.exceptions import TableNotFoundError
 from deltalake.table import TableOptimizer
 from Extract import extract_from_csv
-from Transform import rename_columns, clean_columns, change_values
-from Config import olympic_raw_path, bronze_path, silver_path
+from Transform import rename_columns, clean_columns, change_values, ranking_countries
+from Config import olympic_raw_path, bronze_path, silver_path, gold_path
 
 def save_data_as_delta(df, path, mode="overwrite", partition_cols=None):
     write_deltalake(
@@ -65,3 +65,6 @@ df_silver_olympic = clean_columns(df_silver_olympic)
 df_silver_olympic = change_values(df_silver_olympic)
 write_deltalake(silver_path, df_silver_olympic, mode="overwrite")
 
+
+df_gold_olympic = ranking_countries(df_silver_olympic)
+write_deltalake(gold_path, df_gold_olympic, mode="overwrite")
