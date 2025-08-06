@@ -2,20 +2,19 @@ import os
 import pandas as pd
 import pyarrow as pa
 from Extract import extract_from_csv
-from Config import olympic_raw_path, bronze_path, silver_path
 
 def rename_columns(df):
     rename_mapping = {
                     '0':'Paises',
-                    '1':'Total summer games',
-                    '2':'Gold medals',
-                    '3':'Silver medals',
-                    '4':'Bronze medals',
+                    '1':'Summer games',
+                    '2':'Summer Gold medals',
+                    '3':'Summer Silver medals',
+                    '4':'Summer Bronze medals',
                     '5':'Summer totals',
-                    '6':'Total winter games',
-                    '7':'Gold medals',
-                    '8':'Silver medals',
-                    '9':'Bronze medals',
+                    '6':'Winter games',
+                    '7':'Winter Gold medals',
+                    '8':'Winter Silver medals',
+                    '9':'Winter Bronze medals',
                     '10':'Winter totals',
                     '11':'Total games',
                     '12':'Gold',
@@ -35,15 +34,15 @@ def clean_columns(df):
 def change_values(df):
     type_mapping = {
         'Paises':'object',
-        'Total summer games':'int64',
-        'Gold medals':'int64',
-        'Silver medals':'int64',
-        'Bronze medals':'int64',
+        'Summer games':'int64',
+        'Summer Gold medals':'int64',
+        'Summer Silver medals':'int64',
+        'Summer Bronze medals':'int64',
         'Summer totals':'int64',
-        'Total winter games':'int64',
-        'Gold medals':'int64',
-        'Silver medals':'int64',
-        'Bronze medals':'int64',
+        'Winter games':'int64',
+        'Winter Gold medals':'int64',
+        'Winter Silver medals':'int64',
+        'Winter Bronze medals':'int64',
         'Winter totals':'int64',
         'Total games':'int64',
         'Gold':'int64',
