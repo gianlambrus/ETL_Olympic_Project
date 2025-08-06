@@ -1,12 +1,9 @@
-import os
-import pandas as pd
-import pyarrow as pa 
 from deltalake import write_deltalake, DeltaTable
 from deltalake.exceptions import TableNotFoundError
 from deltalake.table import TableOptimizer
 from Extract import extract_from_csv
-from Transform import rename_columns, clean_columns, change_values, df_bronze_olympic, df_silver_olympic
-from Config import bronze_path, silver_path
+from Transform import rename_columns, clean_columns, change_values
+from Config import olympic_raw_path, bronze_path, silver_path
 
 def save_data_as_delta(df, path, mode="overwrite", partition_cols=None):
     write_deltalake(
@@ -59,5 +56,12 @@ def save_in_deltalake(df):
     dt= DeltaTable(olympic_raw_dir)
     print("Cantidad de filas:", dt.to_pandas().shape[0])
 
-bronze_path = save_data_as_delta(df_bronze_olympic, bronze_path)
-silver_path = save_data_as_delta(df_silver_olympic, silver_path)
+
+df_bronze_olympic = extract_from_csv(olympic_raw_path)
+write_deltalake(bronze_path, df_bronze_olympic, mode="overwrite")
+
+df_silver_olympic = rename_columns(df_bronze_olympic)
+df_silver_olympic = clean_columns(df_silver_olympic)
+df_silver_olympic = change_values(df_silver_olympic)
+write_deltalake(silver_path, df_silver_olympic, mode="overwrite")
+
