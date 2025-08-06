@@ -52,3 +52,8 @@ def change_values(df):
         } 
     df = df.astype(type_mapping)
     return df 
+
+
+def ranking_countries(df):
+    df['ranking'] = df['Total medals'].rank(ascending=False,method='dense')
+    return df
