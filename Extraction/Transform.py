@@ -3,8 +3,6 @@ import pandas as pd
 import pyarrow as pa
 from Extract import extract_from_csv
 from Config import olympic_raw_path, bronze_path, silver_path
-df_bronze_olympic = extract_from_csv(olympic_raw_path)
-
 
 def rename_columns(df):
     rename_mapping = {
@@ -55,7 +53,3 @@ def change_values(df):
         } 
     df = df.astype(type_mapping)
     return df 
-
-df_silver_olympic = rename_columns(df_bronze_olympic)
-df_silver_olympic = clean_columns(df_silver_olympic)
-df_silver_olympic = change_values(df_silver_olympic)
