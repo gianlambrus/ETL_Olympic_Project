@@ -6,3 +6,6 @@ __pycache__/
 .Python
 lib64/
 pyvenv.cfg/
+.venv/
+ENV/
+env/
