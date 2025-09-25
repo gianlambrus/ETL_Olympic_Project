@@ -1,6 +1,6 @@
-datalake_base = "D:/Practica_ETL/datalake"
+datalake_base = "/home/vboxuser/Documents/ETL_Olympic_Project/datalake"
 
-olympic_raw_path = "D:/Practica_ETL/Base/olympics.csv"
-bronze_path = f"{datalake_base}/bronze/olympics"
-silver_path = f"{datalake_base}/silver/olympics"
-gold_path = f"{datalake_base}/gold/olympics"
+olympic_raw_path = "/home/vboxuser/Documents/ETL_Olympic_Project/Base/olympics.csv"
+bronze_path = "/home/vboxuser/Documents/ETL_Olympic_Project/datalake/bronze"
+silver_path = "/home/vboxuser/Documents/ETL_Olympic_Project/datalake/silver"
+gold_path = "/home/vboxuser/Documents/ETL_Olympic_Project/datalake/gold"
