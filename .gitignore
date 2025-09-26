@@ -9,3 +9,6 @@ pyvenv.cfg/
 .venv/
 ENV/
 env/
+__init__.py
+pytest.ini
+.pytest_cache/
