@@ -53,7 +53,7 @@ def change_values(df):
 def null_treatment(df):
     for col in df.columns:
         if pd.api.types.is_numeric_dtype(df[col]):
-            df[col] = df[col].fillna(0)
+            df[col] = df[col].replace([None], pd.NA).fillna(0)
     return df
 
 def ranking_countries(df):
