@@ -1,8 +1,8 @@
 import pyarrow as pa
 from deltalake import write_deltalake, DeltaTable
-from extract import extract_from_csv
-from transform import rename_columns, clean_columns, change_values, null_treatment, ranking_countries
-from config import olympic_raw_path, bronze_path, silver_path, gold_path
+from extraction.extract import extract_from_csv
+from extraction.transform import rename_columns, clean_columns, change_values, null_treatment, ranking_countries
+from extraction.config import olympic_raw_path, bronze_path, silver_path, gold_path
 
 def save_data_as_delta(df, path, mode="overwrite", partition_cols=None):
     write_deltalake(
