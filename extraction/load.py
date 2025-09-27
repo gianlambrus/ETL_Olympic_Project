@@ -1,8 +1,13 @@
 import pyarrow as pa
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from deltalake import write_deltalake, DeltaTable
 from extraction.extract import extract_from_csv
 from extraction.transform import rename_columns, clean_columns, change_values, null_treatment, ranking_countries
 from extraction.config import olympic_raw_path, bronze_path, silver_path, gold_path
+from logger import get_logger
+
+logger = get_logger(__name__)
 
 def save_data_as_delta(df, path, mode="overwrite", partition_cols=None):
     write_deltalake(
@@ -50,7 +55,7 @@ def save_in_deltalake(df):
     )
     
     dt= DeltaTable(olympic_raw_path)
-    print("Cantidad de filas:", dt.to_pandas().shape[0])
+    logger.info("Cantidad de filas:", dt.to_pandas().shape[0])
 
 
 df_bronze_olympic = extract_from_csv(olympic_raw_path)
