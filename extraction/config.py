@@ -1,6 +1,10 @@
-datalake_base = "/home/vboxuser/Documents/ETL_Olympic_Project/datalake"
+import os
+from dotenv import load_dotenv
 
-olympic_raw_path = "/home/vboxuser/Documents/ETL_Olympic_Project/Base/olympics.csv"
-bronze_path = "/home/vboxuser/Documents/ETL_Olympic_Project/datalake/bronze"
-silver_path = "/home/vboxuser/Documents/ETL_Olympic_Project/datalake/silver"
-gold_path = "/home/vboxuser/Documents/ETL_Olympic_Project/datalake/gold"
+load_dotenv()
+
+datalake_base = os.getenv("DATALAKE_BASE")
+olympic_raw_path = os.getenv("OLYMPIC_RAW_PATH")
+bronze_path = os.getenv("BRONZE_PATH")
+silver_path = os.getenv("SILVER_PATH")
+gold_path = os.getenv("GOLD_PATH")
