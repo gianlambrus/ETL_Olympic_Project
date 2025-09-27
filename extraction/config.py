@@ -3,8 +3,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-datalake_base = os.getenv("DATALAKE_BASE")
-olympic_raw_path = os.getenv("OLYMPIC_RAW_PATH")
-bronze_path = os.getenv("BRONZE_PATH")
-silver_path = os.getenv("SILVER_PATH")
-gold_path = os.getenv("GOLD_PATH")
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+datalake_path = os.path.join(base_dir, "datalake")
+
+olympic_raw_path = os.getenv("olympic_raw_path", os.path.join(base_dir, "olympics.csv"))
+bronze_path = os.getenv("bronze_path", os.path.join(datalake_path, "bronze"))
+silver_path = os.getenv("silver_path", os.path.join(datalake_path, "silver"))
+gold_path = os.getenv("gold_path", os.path.join(datalake_path, "gold"))
