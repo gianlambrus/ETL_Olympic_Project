@@ -12,3 +12,5 @@ env/
 pytest.ini
 .pytest_cache/
 conection.env
+__pycache__/
+__init__.py
