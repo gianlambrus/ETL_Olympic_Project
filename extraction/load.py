@@ -1,5 +1,6 @@
 import pyarrow as pa
 import sys, os
+import pandas as pd
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from deltalake import write_deltalake, DeltaTable
 from extraction.extract import extract_from_csv
@@ -9,10 +10,15 @@ from logger import get_logger
 
 logger = get_logger(__name__)
 
-def save_data_as_delta(df, path, mode="overwrite", partition_cols=None):
-    write_deltalake(
-        path, df, mode=mode, partition_by=partition_cols
-        )
+def save_data_as_delta(df: pd.DataFrame, path: str):
+    try:
+        if not isinstance(df, pd.DataFrame):
+            df = pd.DataFrame(df)
+        write_deltalake(path, df, mode = "overwrite")
+        logger.info(f"Datos guardados en {path}")
+    except Exception as e:
+        logger.error(f"Error tipo {e}")
+        raise
 
 def save_new_data_as_delta(new_data, data_path, predicate, partition_cols=None):
     try:
@@ -59,14 +65,17 @@ def save_in_deltalake(df):
 
 
 df_bronze_olympic = extract_from_csv(olympic_raw_path)
-write_deltalake(bronze_path, df_bronze_olympic, mode="overwrite")
+table_bronze = pa.Table.from_pandas(df_bronze_olympic)
+write_deltalake(bronze_path, table_bronze, mode="overwrite")
 
 df_silver_olympic = rename_columns(df_bronze_olympic)
 df_silver_olympic = clean_columns(df_silver_olympic)
 df_silver_olympic = change_values(df_silver_olympic)
 df_silver_olympic = null_treatment(df_silver_olympic)
-write_deltalake(silver_path, df_silver_olympic, mode="overwrite")
+silver_table = pa.Table.from_pandas(df_silver_olympic)
+write_deltalake(silver_path, silver_table, mode="overwrite")
 
 
 df_gold_olympic = ranking_countries(df_silver_olympic)
-write_deltalake(gold_path, df_gold_olympic, mode="overwrite")
+gold_table = pa.Table.from_pandas(df_gold_olympic)
+write_deltalake(gold_path, gold_table, mode="overwrite")
