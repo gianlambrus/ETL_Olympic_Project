@@ -1,0 +1,18 @@
+airflow:
+  connections: 
+    - conn_id: olympic_mysql
+      conn_type: mysql
+      conn_host: ${mysql_host}
+      conn_schema: olympics
+      conn_login: ${mysql_user}
+      conn_password: ${mysql_password}
+      conn_port: 3306
+  variables:
+    - variable_name: olympic_raw_path
+      variable_value: ${OLYMPIC_RAW_PATH}
+    - variable_name: bronze_path
+      variable_value: ${BRONZE_PATH}
+    - variable_name: silver_path
+      variable_value: ${SILVER_PATH}
+    - variable_name: gold_path
+      variable_value: ${GOLD_PATH}
