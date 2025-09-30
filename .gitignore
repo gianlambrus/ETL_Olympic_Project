@@ -14,3 +14,6 @@ pytest.ini
 conection.env
 __pycache__/
 __init__.py
+dags/.airflowignore
+.dockerignore
+.env
