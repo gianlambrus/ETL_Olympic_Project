@@ -17,3 +17,4 @@ __init__.py
 dags/.airflowignore
 .dockerignore
 .env
+packages.txt
