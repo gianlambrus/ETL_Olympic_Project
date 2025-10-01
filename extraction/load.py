@@ -1,6 +1,6 @@
 import pyarrow as pa
-import pandas as pd
-from deltalake import write_deltalake, DeltaTable 
+from deltalake import write_deltalake, DeltaTable
+from deltalake.exceptions import TableNotFoundError
 from logger import get_logger
 
 logger = get_logger(__name__)
