@@ -4,6 +4,11 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
+*.sqlite3
+etl.log
+.DS_Store
+/.idea
+.vscode
 lib64/
 pyvenv.cfg/
 .venv/
@@ -13,8 +18,7 @@ pytest.ini
 .pytest_cache/
 conection.env
 __pycache__/
-__init__.py
 dags/.airflowignore
 .dockerignore
 .env
-packages.txt
+.datalake/
