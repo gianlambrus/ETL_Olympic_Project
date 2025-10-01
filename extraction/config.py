@@ -1,13 +1,16 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+base_dir = Path(__file__).resolve().parent.parent
+env_path = base_dir / ".env"
 
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if env_path.exists():
+    load_dotenv(dotenv_path=env_path)
+else:
+    load_dotenv()
 
-datalake_path = os.path.join(base_dir, "datalake")
-
-olympic_raw_path = os.getenv("olympic_raw_path", os.path.join(base_dir, "olympics.csv"))
-bronze_path = os.getenv("bronze_path", os.path.join(datalake_path, "bronze"))
-silver_path = os.getenv("silver_path", os.path.join(datalake_path, "silver"))
-gold_path = os.getenv("gold_path", os.path.join(datalake_path, "gold"))
+olympic_raw_path = os.getenv("olympic_raw_path", str(base_dir / "data" / "olympics.csv"))
+bronze_path = os.getenv("bronze_path", str(base_dir / "datalake" / "bronze"))
+silver_path = os.getenv("silver_path", str(base_dir / "datalake" / "silver"))
+gold_path = os.getenv("gold_path", str(base_dir / "datalake" / "gold"))
