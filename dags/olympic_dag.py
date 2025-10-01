@@ -20,7 +20,7 @@ from extraction.load import save_data_as_delta
 def olympic_pipeline():
 
     @task()
-    def _extract(): 
+    def _extract():
         raw_path = Variable.get("olympic_raw_path")
         bronze_path = Variable.get("bronze_path")
         df = extract_from_csv(raw_path)
