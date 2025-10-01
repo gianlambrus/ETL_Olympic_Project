@@ -2,7 +2,6 @@ import pandas as pd
 from airflow.decorators import dag, task
 from airflow.models import Variable
 from datetime import datetime, timedelta
-from extraction.config import olympic_raw_path, bronze_path, silver_path, gold_path
 from extraction.extract import extract_from_csv
 from extraction.transform import rename_columns, clean_columns, change_values, null_treatment, ranking_countries
 from extraction.load import save_data_as_delta
