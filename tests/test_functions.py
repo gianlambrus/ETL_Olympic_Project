@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from extraction.transform import rename_columns, clean_columns, change_values, null_treatment, ranking_countries
 from extraction.load import df_bronze_olympic
 
