@@ -7,7 +7,7 @@ def extract_from_csv(file_path):
     #ES: Extrae el archivo csv
     #EN: Extracts a csv file
     if not os.path.exists(file_path):
-        logger.error("Extrayendo %s", inspect.getdoc(file_path))
+        logger.error("Archivo no existente %s", file_path)
         raise FileNotFoundError(f"Archivo no encontrado: {file_path}")
     
     logger.debug("Extrayendo archivo CSV desde: %s (abs: %s)",
