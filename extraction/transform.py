@@ -21,7 +21,7 @@ def rename_columns(df):
                     '14':'Bronze',
                     '15':'Total medals'
                     }
-    df=df.rename(columns = rename_mapping)
+    df=df.rename(columns=rename_mapping)
     return df
 
 
